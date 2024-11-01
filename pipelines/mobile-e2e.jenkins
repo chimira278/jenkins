@@ -1,0 +1,13 @@
+#!/usr/bin/env groovy
+
+buildPod.groovy {
+    stage ('Checkout') {
+        checkout scm
+    }
+
+    stage ('Build') {
+        container('groovy') {
+            println "It's working clinica-mobile-e2e-test!!!"
+        }
+    }
+}

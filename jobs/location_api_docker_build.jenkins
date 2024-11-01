@@ -1,0 +1,39 @@
+#!/usr/bin/env groovy
+
+pipelineJob('location-api-docker-build') {
+    displayName('location-api-docker-build')
+
+    description('Location API Docker Build')
+
+    logRotator {
+        daysToKeep(1)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    properties {
+        disableConcurrentBuilds {
+            abortPrevious(false)
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/jayamorin/jenkins.git')
+                        credentials('GITHUB_TOKEN')
+                    }
+                    branches('*/main')
+                }
+            }
+
+            scriptPath('pipelines/api-python.jenkins')
+        }
+    }
+}

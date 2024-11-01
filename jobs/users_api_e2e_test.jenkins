@@ -1,0 +1,39 @@
+#!/usr/bin/env groovy
+
+pipelineJob('users-api-e2e-test') {
+    displayName('users-api-e2e-test')
+
+    description('Users API End-to-end Testing')
+
+    logRotator {
+        daysToKeep(1)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    properties {
+        disableConcurrentBuilds {
+            abortPrevious(false)
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/jayamorin/jenkins.git')
+                        credentials('GITHUB_TOKEN')
+                    }
+                    branches('*/main')
+                }
+            }
+
+            scriptPath('pipelines/api-e2e.jenkins')
+        }
+    }
+}

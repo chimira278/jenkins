@@ -1,0 +1,11 @@
+#!/usr/bin/env groovy
+
+buildPod.nodejs {
+    stage ('Checkout') {
+        checkout scm
+    }
+
+    container('nodejs') {
+        sh "echo hello from $POD_CONTAINER"
+    }
+}

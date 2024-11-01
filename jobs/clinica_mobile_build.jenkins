@@ -1,0 +1,39 @@
+#!/usr/bin/env groovy
+
+pipelineJob('clinica-mobile-build') {
+    displayName('clinica-mobile-build')
+
+    description('Clinica Mobile Build')
+
+    logRotator {
+        daysToKeep(1)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    properties {
+        disableConcurrentBuilds {
+            abortPrevious(false)
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/jayamorin/jenkins.git')
+                        credentials('GITHUB_TOKEN')
+                    }
+                    branches('*/main')
+                }
+            }
+
+            scriptPath('pipelines/mobile-nodejs.jenkins')
+        }
+    }
+}

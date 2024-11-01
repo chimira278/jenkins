@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins: slave
+spec:
+  securityContext:
+    runAsUser: 1000
+  containers:
+    - name: #CONTAINER_NAME
+      image: #CONTAINER_IMAGE
+      command:
+        - cat
+      tty: true
+      env:
+        - name: HOME
+          value: /tmp
+      resources:
+        requests:
+          cpu: #REQUESTS_CPU
+          memory: #REQUESTS_MEM
+        limits:
+          cpu: #LIMITS_CPU
+          memory: #LIMITS_MEM
+    - name: jnlp
+      resources:
+        requests:
+          cpu: "1"
+          memory: "1Gi"
