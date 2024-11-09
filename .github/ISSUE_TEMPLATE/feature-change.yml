@@ -2,7 +2,6 @@ name: Feature Change
 description: Alteration, replacement, or partial removal of existing functionality
 title: "feature-change: "
 labels: ["feature-change"]
-assignees: []
 body:
   - type: textarea
     id: problem-motivation

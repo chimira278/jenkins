@@ -1,8 +1,7 @@
 name: Maintenance
-description: Refactor specifically concerning adaption to updates of dependencies, target platforms, etc.
+description: Refactor specifically concerning adaption to updates of dependencies, target platforms, etc
 title: "maintenance: "
 labels: ["maintenance"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

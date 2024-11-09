@@ -2,7 +2,6 @@ name: Feature Drop
 description: Removal of a whole feature (or its remains)
 title: "feature-drop: "
 labels: ["feature-drop"]
-assignees: []
 body:
   - type: textarea
     id: problem-motivation

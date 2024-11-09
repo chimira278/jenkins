@@ -2,14 +2,13 @@ name: Refactor
 description: General codebase improvements not concerned with functionality and not covered by other labels
 title: "refactor: "
 labels: ["refactor"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest
     attributes:
       label: Object of Interest
       description: Describe the parts that require overwork as specific as possible.
-      placeholder: What are the files/modules/classes/components/functions/etc. that need a refactor? 
+      placeholder: What are the files/modules/classes/components/functions/etc. that need a refactor?
     validations:
       required: true
   - type: textarea

@@ -1,8 +1,7 @@
 name: Documentation
-description: Improvements to the documentation suite, as well as documentation pages and code comments
+description: Improvements or additions to documentation
 title: "documentation: "
 labels: ["documentation"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

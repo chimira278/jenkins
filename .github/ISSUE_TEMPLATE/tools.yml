@@ -2,7 +2,6 @@ name: Tools
 description: General tool suite improvements aiding development and not covered by other labels
 title: "tools: "
 labels: ["tools"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

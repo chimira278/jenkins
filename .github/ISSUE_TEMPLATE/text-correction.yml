@@ -1,8 +1,7 @@
 name: Text Correction
-description: Refactor of any bad language/wrong text implications and grammar/punctuation/spelling fixes, etc.
+description: Refactor of any bad language/wrong text implications and grammar/punctuation/spelling fixes, etc
 title: "text-correction: "
 labels: ["text-correction"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

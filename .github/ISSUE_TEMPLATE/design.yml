@@ -2,7 +2,6 @@ name: Design
 description: Refactor specifically concerning UI/UX improvements
 title: "design: "
 labels: ["design"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

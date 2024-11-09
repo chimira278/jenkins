@@ -2,7 +2,6 @@ name: Testing
 description: Improvements to the test suite, as well as pointing out wrong or missing tests
 title: "testing: "
 labels: ["testing"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

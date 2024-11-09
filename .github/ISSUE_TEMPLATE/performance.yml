@@ -2,7 +2,6 @@ name: Performance
 description: Refactor specifically concerning performance improvements
 title: "performance: "
 labels: ["performance"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest

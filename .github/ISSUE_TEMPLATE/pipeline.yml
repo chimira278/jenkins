@@ -2,7 +2,6 @@ name: Pipeline
 description: Improvements to the CI/CD pipeline
 title: "pipeline: "
 labels: ["pipeline"]
-assignees: []
 body:
   - type: textarea
     id: object-of-interest
