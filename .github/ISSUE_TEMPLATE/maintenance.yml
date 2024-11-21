@@ -43,6 +43,16 @@ body:
     validations:
       required: true
   - type: textarea
+    id: unit-test
+    attributes:
+      label: Unit Test
+      description: Add unit test for the change, etc.
+      placeholder: |
+        - [ ] Unit test1
+        - [ ] Unit test2
+    validations:
+      required: false
+  - type: textarea
     id: further-information
     attributes:
       label: Further Information

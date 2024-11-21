@@ -1,0 +1,48 @@
+name: Add Untracked Issues to Project
+
+on:
+  workflow_dispatch:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  add-untracked-issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add Untracked Issues to Project
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          REPO_OWNER="${{ github.repository_owner }}"
+          REPO_NAME="${{ github.event.repository.name }}"
+          PROJECT_ID="PVT_kwDOCxF0Vc4Asgcm"
+
+          issues=$(curl -s -H "Authorization: Bearer  $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues?state=open")
+
+          if echo "$issues" | jq empty 2>/dev/null; then
+
+            echo "$issues" | jq -c '.[]' | while read -r issue; do
+
+              if echo "$issue" | jq -e '.node_id' >/dev/null; then
+                issue_id=$(echo "$issue" | jq -r '.node_id')
+
+                graphql_query="mutation { addProjectV2ItemById(input: {projectId: \\\"$PROJECT_ID\\\", contentId: \\\"$issue_id\\\"}) { item { id } } }"
+
+                response=$(curl -s -X POST -H "Authorization: Bearer  $GITHUB_TOKEN" \
+                  -H "Content-Type: application/json" \
+                  -d "{\"query\": \"$graphql_query\"}" \
+                  https://api.github.com/graphql)
+
+                echo "Added issue $issue_id to project. Response: $response"
+              else
+                echo "No node_id found for issue: $issue"
+              fi
+            done
+          else
+            echo "Error: Invalid JSON response from API."
+          fi
